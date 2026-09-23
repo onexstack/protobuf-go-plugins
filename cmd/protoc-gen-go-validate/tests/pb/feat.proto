@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package validate.test.v1;
+
+option go_package = "github.com/onexstack/protobuf-go-plugins/cmd/protoc-gen-go-validate/tests/pb;pb";
+
+import "validate/validate.proto";
+
+// Plain carries rules and nothing else. It is the control: its exported
+// Validate/ValidateAll must keep the names, and the shape, that PGV has always
+// produced, so that a message the option is not applied to generates
+// byte-identically to upstream.
+message Plain {
+  string name = 1 [(validate.rules).string = {min_len: 1}];
+}
+
+// Custom opts out of the exported pair so a hand-written file can own it.
+// Every rule below has to survive the rename: the in-list, the min_items and
+// the generated error/lookup machinery are what the hand-written half calls
+// into, and losing them would make the option useless.
+message Custom {
+  option (validate.unexported) = true;
+
+  string code = 1 [(validate.rules).string = {min_len: 2, in: ["aa", "bb"]}];
+  repeated string ids = 2 [(validate.rules).repeated = {min_items: 1}];
+}
+
+// WithOneof covers the parts of the template that are not field rules: the
+// oneof switch and the required-oneof check sit inside the same conditional
+// block, so a oneof message is where a misplaced {{ end }} surfaces as a
+// syntax error rather than as a silently missing rule.
+message WithOneof {
+  option (validate.unexported) = true;
+
+  oneof pick {
+    option (validate.required) = true;
+    string a = 1;
+    string b = 2;
+  }
+}

@@ -20,7 +20,7 @@ import (
 	"strings"
 	"time"
 
-	pgs "github.com/lyft/protoc-gen-star"
+	pgs "github.com/lyft/protoc-gen-star/v2"
 	"github.com/prometheus/common/model"
 
 	"github.com/onexstack/protobuf-go-plugins/defaults"
