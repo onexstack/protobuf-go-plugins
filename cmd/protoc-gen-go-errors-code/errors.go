@@ -16,7 +16,7 @@ import (
 	"google.golang.org/protobuf/compiler/protogen"
 	"google.golang.org/protobuf/proto"
 
-	"github.com/onexstack/onex/tools/protoc-gen-go-errors-code/errors"
+	"github.com/onexstack/protobuf-go-plugins/cmd/protoc-gen-go-errors-code/errors"
 )
 
 var enCases = cases.Title(language.AmericanEnglish, cases.NoLower)

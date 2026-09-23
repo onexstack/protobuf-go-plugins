@@ -8,7 +8,7 @@ syntax = "proto3";
 
 package errors;
 
-option go_package = "github.com/go-kratos/kratos/v2/errors;errors";
+option go_package = "github.com/onexstack/protobuf-go-plugins/cmd/protoc-gen-go-errors-code/errors;errors";
 option java_multiple_files = true;
 option java_package = "com.github.kratos.errors";
 option objc_class_prefix = "KratosErrors";

@@ -1,0 +1,9 @@
+# Build artifacts. `make build` writes here, and a bare `go build ./cmd/...`
+# drops the plugin binary in the repository root instead.
+/_output/
+/protoc-gen-go-*
+/protoc-gen-go-deepcopy
+
+# The nested checkout artifacts the protoc-gen-go-deepcopy fork arrived with,
+# kept aside rather than deleted. Nothing here is part of the module.
+/.fork-clone-backup/
